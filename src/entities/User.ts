@@ -1,4 +1,4 @@
-import { Entity, PrimaryKey, Property, ManyToOne, ManyToMany, Collection } from "@mikro-orm/core";
+import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 
 enum Provider {
   Google,
@@ -11,33 +11,33 @@ export default class User {
   @PrimaryKey()
   id!: number;
 
-  @Property()
+  @Property({ type: 'date' })
   createdAt = new Date();
 
-  @Property({ onUpdate: () => new Date() })
+  @Property({ type: 'date', onUpdate: () => new Date() })
   updatedAt = new Date();
 
-  @Property()
+  @Property({ type: 'text' })
   name!: string;
 
-  @Property()
+  @Property({ nullable: true })
   profileImgSrc?: string;
 
-  @Property()
+  @Property({ nullable: true,  type: 'text' })
   address?: string;
 
-  @Property()
+  @Property({ nullable: true, type: 'text' })
   email?: string;
 
-  @Property()
+  @Property({ nullable: true })
   age?: number;
 
-  @Property()
+  @Property({ nullable: true })
   interests?: string[];
 
-  @Property()
+  @Property({ nullable: true, type: 'text' })
   provider?: Provider;
 
-  @Property()
+  @Property({ nullable: true })
   extra?: object;
 }

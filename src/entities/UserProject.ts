@@ -11,18 +11,18 @@ export default class UserProject {
   @PrimaryKey()
   id!: number;
 
-  @Property()
+  @Property({ type: 'date' })
   createdAt = new Date();
 
-  @Property()
+  @Property({ type: 'date', onUpdate: () => new Date() })
   updatedAt = new Date();
 
-  @Property()
+  @Property({ type: 'text' })
   confirmed!: Confirmed;
   
-  @Property()
+  @Property({ nullable: true })
   score?: number[];
 
-  @Property()
+  @Property({ nullable: true })
   extra?: object;
 }

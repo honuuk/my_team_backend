@@ -1,37 +1,37 @@
-import { Entity, PrimaryKey, Property, ManyToOne, ManyToMany, Collection } from "@mikro-orm/core";
+import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 
 @Entity()
 export default class Project {
   @PrimaryKey()
   id!: number;
 
-  @Property()
+  @Property({ type: 'date' })
   createdAt = new Date();
 
-  @Property({ onUpdate: () => new Date() })
+  @Property({ type: 'date', onUpdate: () => new Date() })
   updatedAt = new Date();
 
-  @Property()
+  @Property({ type: 'text' })
   name!: string;
 
-  @Property()
+  @Property({ type: 'text' })
   location?: string;
 
-  @Property()
+  @Property({ nullable: true })
   tags?: string[];
 
-  @Property()
+  @Property({ nullable: true })
   evaluation?: string[];
 
-  @Property()
-  description?: number;
+  @Property({ nullable: true })
+  description?: string;
 
-  @Property()
+  @Property({ nullable: true })
   maxNumber?: number;
 
-  @Property()
+  @Property({ nullable: true })
   responseRate?: number;
 
-  @Property()
+  @Property({ nullable: true })
   extra?: object;
 }

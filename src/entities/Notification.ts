@@ -5,12 +5,18 @@ export default class Notification {
   @PrimaryKey()
   id!: number;
 
-  @Property()
+  @Property({ type: 'date' })
+  createdAt = new Date();
+
+  @Property({ type: 'date', onUpdate: () => new Date() })
+  updatedAt = new Date();
+
+  @Property({ nullable: true })
   contents?: string;
 
   @Property()
   read!: boolean;
 
-  @Property()
+  @Property({ nullable: true })
   extra?: object;
 }

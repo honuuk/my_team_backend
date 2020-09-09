@@ -1,21 +1,15 @@
 import { MikroORM } from '@mikro-orm/core';
-import { IS_PRODUCTION } from './constants';
-import User from './entities/User';
-import Project from './entities/Project';
-import UserProject from './entities/UserProject';
-import Category from './entities/Category';
-import Notification from './entities/Notification';
+import mikroConfig from './mikro-orm.config';
+// import User from './entities/User';
 
 const main = async () => {
-  const orm = await MikroORM.init({
-    entities: [User, Project, UserProject, Category, Notification],
-    host: 'jewook-test.c6lw735zy6ro.ap-northeast-2.rds.amazonaws.com',
-    dbName: 'my_team',
-    user: 'root',
-    password: 'dnwnwjdqhrwk!',
-    debug: !IS_PRODUCTION,
-    type: 'postgresql',
-  });
+  const orm = await MikroORM.init(mikroConfig);
+  await orm.getMigrator().up();
+  
+  // const user = orm.em.create(User, { name: 'jewook' });
+  // await orm.em.persistAndFlush(user);
+  // console.log('------------- sql 2 ----------------------');
+  // await orm.em.nativeInsert(User, { name: 'jewook' });
 };
 
-main();
+main().catch(e => console.log(e));

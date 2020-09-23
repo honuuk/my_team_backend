@@ -1,19 +1,26 @@
 import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { Field, ObjectType } from "type-graphql";
 
+@ObjectType()
 @Entity()
 export default class Category {
+  @Field()
   @PrimaryKey()
   id!: number;
 
-  @Property({ type: 'date' })
+  @Field(() => String)
+  @Property({ type: "date" })
   createdAt = new Date();
 
-  @Property({ type: 'date', onUpdate: () => new Date() })
+  @Field(() => String)
+  @Property({ type: "date", onUpdate: () => new Date() })
   updatedAt = new Date();
 
-  @Property({ type: 'text' })
+  @Field()
+  @Property({ type: "text" })
   name!: string;
 
+  @Field(() => Object)
   @Property({ nullable: true })
   extra?: object;
 }

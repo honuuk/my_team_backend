@@ -4,7 +4,7 @@ import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 
-import mikroConfig from "./mikro-orm.config";
+import mikroConfig from "./mikroOrm.config";
 import UserResolver from "./resolvers/user";
 
 const main = async () => {
